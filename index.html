@@ -60,11 +60,12 @@
     }
     .title{
         color:#40281f ;
-        font-frgb(95, 62, 50)'Lobster', cursive;
+        font-family: 'Lobster', cursive;
         font-size: 30px;
     }
 body {
   font-family: 'Poppins', sans-serif;
+  padding: 5px;
 }
 .insta-btn{
 color: #E4405F;  /* Instagram brand pink */
@@ -77,6 +78,18 @@ color: #E4405F;  /* Instagram brand pink */
   background-color: #56382D;
 
 }
+.badge-bestseller {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: #FFD700; /* Gold Yellow */
+  color: #1B1821;
+  font-weight: bold;
+  padding: 5px 5px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
   </style>
 </head>
 <body>
@@ -110,6 +123,20 @@ color: #E4405F;  /* Instagram brand pink */
     <p class="lead">Cute • Unique • Crafted with Love 💕</p>
   </section>
 
+  <!-- 🔹 New Arrivals Carousel -->
+   <h3 class="fw-bold">New Arrival</h3>
+<div id="newArrivalsCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+  <div class="carousel-inner" id="carousel-items"></div>
+
+  <!-- Carousel Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#newArrivalsCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#newArrivalsCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
   <!-- Products -->
   <div class="container">
     <div id="product-list" class="row g-4"></div>
@@ -130,12 +157,23 @@ color: #E4405F;  /* Instagram brand pink */
   <script>
     // 🔹 Array of Products
     const products = [
+       {
+    id:"010",
+    title: "Flower Bouquet",
+    price: "₹199",
+    image: "./11.jpg",
+    desc: "Beautiful crochet flower bouquet 💐 – perfect for gifting love and joy.",
+    bestseller: true,
+    newarrival: true
+  },
         {
     id:"001",
     title: "Velvet Rose",
     price: "₹99",
     image: "./7.jpeg",
-    desc: "Deep red crochet rose with green leaves 🌹 – looks so real, feels so soft."
+    desc: "Deep red crochet rose with green leaves 🌹 – looks so real, feels so soft.",
+    bestseller: true,
+     newarrival: true
   },
  
   {
@@ -178,7 +216,8 @@ color: #E4405F;  /* Instagram brand pink */
     title: "Lovely Heart",
     price: "₹49",
     image: "./1.jpeg",
-    desc: "Handmade crochet heart ❤️ – perfect for gifting love and warmth."
+    desc: "Handmade crochet heart ❤️ – perfect for gifting love and warmth.",
+    bestseller: true
   },
   {
     id:"008",
@@ -193,24 +232,48 @@ color: #E4405F;  /* Instagram brand pink */
     price: "₹49",
     image: "./9.jpeg",
     desc: "Cute crochet Octopus 🐙 – wise, tiny, and adorable."
+  },
+    {
+    id:"011",
+    title: "Cozy Scarf",
+    price: "₹299",
+    image: "./10.jpeg",
+    desc: "Warm handmade crochet scarf 🧣 – stylish and perfect for winter.",
+    bestseller: true,
+    newarrival: true
   }
 ];
 
+ // 🔹 Render Carousel for New Arrivals
+  const carouselItems = document.getElementById("carousel-items");
+  const newArrivals = products.filter(p => p.newarrival);
 
+  newArrivals.forEach((product, index) => {
+    carouselItems.innerHTML += `
+      <div class="carousel-item ${index === 0 ? 'active' : ''}">
+        <img src="${product.image}" class="d-block w-100" alt="${product.title}" style="max-height:450px; object-fit:cover;">
+        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-2">
+          <h5>${product.title}</h5>
+          <p class="fw-bold">${product.price}</p>
+        </div>
+      </div>
+    `;
+  });
     // 🔹 Render Products Dynamically
-    const productList = document.getElementById("product-list");
+const productList = document.getElementById("product-list");
 
     products.forEach(product => {
       productList.innerHTML += `
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-header">${product.title}</div>
-            <img src="${product.image}" class="card-img-top" alt="${product.title}">
-            <div class="card-body">
-              <p class="card-text">${product.desc}</p>
-              <p class="card-id"> Product Id : <b> ${product.id} </b></p>
-              <p class="fw-bold">Price: ${product.price}</p>
-              <p class="text-muted">+ Delivery Charges </p>
+       <div class="col-md-4">
+      <div class="card position-relative">
+        ${product.bestseller ? `<span class="badge-bestseller">Best Seller</span>` : ""}
+        <div class="card-header">${product.title}</div>
+        <img src="${product.image}" class="card-img-top" alt="${product.title}">
+        <div class="card-body">
+          <p class="card-text">${product.desc}</p>
+          <p class="card-id"> Product Id : <b> ${product.id} </b></p>
+          <p class="fw-bold">Price: ${product.price}</p>
+          <p class="text-muted">+ Delivery Charges </p>
               <div class="d-flex gap-2">
   <!-- Call Button -->
   <a style="color: #FFFAE5;" href="tel:7588037931" class="btn w-50 call-btn">
