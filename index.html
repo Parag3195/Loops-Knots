@@ -173,14 +173,44 @@ color: #E4405F;  /* Instagram brand pink */
   <script>
     // 🔹 Array of Products
     const products = [
+  { 
+  id: "013", 
+  title: "Minty Blossom Pouch", 
+  price: "₹149", 
+  image: "./13.jpg", 
+  desc: "Handmade crochet drawstring pouch 🌸 – cute, compact, and perfect for storing little treasures.", 
+  bestseller: false ,
+  newarrival: true
+}, 
+{ 
+  id: "014", 
+  title: "Ruffled Scrunchie", 
+  price: "₹99", 
+  image: "./14.jpg", 
+  desc: "Soft and stylish crochet scrunchie 💛 – adds a playful charm to your everyday look.", 
+  newarrival: true
+
+}
+,
+        {
+    id:"012",
+    title: "Lovely Heart (Red)",
+    price: "₹49",
+    image: "./12.jpg",
+    desc: "Handmade crochet heart ❤️ – perfect for gifting love and warmth.",
+    bestseller: true,
+    newarrival: true
+  
+  },
        {
+        
     id:"010",
     title: "Flower Bouquet",
     price: "₹199",
     image: "./11.jpg",
     desc: "Beautiful crochet flower bouquet 💐 – perfect for gifting love and joy.",
     bestseller: true,
-    newarrival: true
+    
   },
         {
     id:"001",
@@ -189,7 +219,7 @@ color: #E4405F;  /* Instagram brand pink */
     image: "./7.jpeg",
     desc: "Deep red crochet rose with green leaves 🌹 – looks so real, feels so soft.",
     bestseller: true,
-     newarrival: true
+    
   },
  
   {
@@ -252,12 +282,13 @@ color: #E4405F;  /* Instagram brand pink */
     {
     id:"011",
     title: "Cozy Scarf",
-    price: "₹499",
+    price: "₹699",
     image: "./10.jpeg",
     desc: "Warm handmade crochet scarf 🧣 – stylish and perfect for winter.",
     bestseller: true,
-    newarrival: true
+    
   }
+  
 ];
   const scrollBtn = document.getElementById("scrollTopBtn");
 
